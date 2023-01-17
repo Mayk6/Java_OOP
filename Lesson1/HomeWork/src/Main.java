@@ -24,13 +24,15 @@ public class Main {
         p4.setGrandChild(p1);
         p4.setChild(p3);
         p5.setBrother(p1);
-        p1.printAllFamily();
+        System.out.println(p1.printAllFamily());
+        p1.writFamilyInFile();
         p1.setBrother(null);
         System.out.println(p3.getChild());
         System.out.println(p4.getChild());
         System.out.println(p1.getParents());
         System.out.println(p3.getParents());
         System.out.println(p1.getBrother());
+        p1.printAllFamily();
         Closet blueCloset = new Closet(10,10,"Blue");
         p3.openCloset(blueCloset);
         p2.openClosetLock(blueCloset);

@@ -1,4 +1,7 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
+
 
 public class Person {
     private String name;
@@ -64,13 +67,22 @@ public class Person {
         return this.connections.get("Внук/Внучка");
     }
 
-    void printAllFamily() {
+    String printAllFamily() {
         StringBuilder sb = new StringBuilder();
         if (this.getChild() != null) sb.append("Дети: ").append(getChild()).append("\n");
         if (this.getParents() != null) sb.append("Родители: ").append(getParents()).append("\n");
         if (this.getBrother() != null) sb.append("Брат/Сестра: ").append(getBrother()).append("\n");
         if (this.getGrandpa() != null) sb.append("Бабушка/Дедушка: ").append(getGrandpa()).append("\n");
-        System.out.println(sb);
+        return sb.toString();
+    }
+    void writFamilyInFile(){
+        try(FileWriter writer = new FileWriter("/media/sf_GeekBrains_Learning/OOP_Java/Lesson1/HomeWork/src/file.txt", false)){
+            writer.write(this.printAllFamily());
+            writer.flush();
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
     private void newConnection(String type, Person who) {
